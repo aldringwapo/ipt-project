@@ -33,9 +33,9 @@ Route::delete('/room/delete/{room}', [RoomController::class, 'delete']);
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::get('/booking/create', [BookingController::class, 'create']);
 Route::post('/booking/create', [BookingController::class, 'store']);
-Route::get('/booking/{user}', [BookingController::class, 'edit']);
-Route::post('/booking/{user}', [BookingController::class, 'update']);
-Route::delete('/booking/delete/{user}', [BookingController::class, 'delete']);
+Route::get('/booking/{booking}', [BookingController::class, 'edit']);
+Route::post('/booking/{booking}', [BookingController::class, 'update']);
+Route::delete('/booking/delete/{booking}', [BookingController::class, 'delete']);
 
 
 // Route::get('/trainees', [TraineesController::class, 'index'])->name('trainees');

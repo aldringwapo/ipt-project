@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <h1>Semifinal</h1>
+        <h1>IPT FINAL PROJECT</h1>
 
 
         <ul class="nav justify-content-end float-right nav-pills">

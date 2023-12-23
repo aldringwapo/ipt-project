@@ -27,55 +27,41 @@
     </div>
 </div>
     <h1 class="text-center mb-4">Edit Room</h1>
-    <div class="row">
-        <div class="col-md-5">
-            <form action="{{ url('room/'. $room->id)}}" method="POST">
-                @csrf 
-                <div class="form-group mt-2">
-                    <label for="room_no">Room Number</label>
-                    <select name="room_no" id="room_no" class="form-select">
-                        <option selected disabled hidden="true">Select room number</option>
-                        @foreach ($room as $rooms)
-                            <option selected>{{$rooms->room_no}}</option>
-                        @endforeach
-                    </select>
-                    @error('room_type')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
+<div class="row">
+    <div class="col-md-5">
+        <form action="{{ url('room/' . $room->id) }}" method="POST">
+            @csrf
+            <div class="form-group mt-2">
+                <label for="room_no">Room Number</label>
+                <input class="form-control" type="text" name="room_no" placeholder="Room Number" value="{{ $room->room_no }}">
+                @error('room_no')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
                 <div class="form-group mt-2">
                     <label for="room_type">Room Type</label>
-                    <select name="room_type" id="room_type" class="form-select">
-                        <option selected disabled hidden="true">Select room type</option>
-                        @foreach ($room as $rooms)
-                            <option value="{{$rooms->room_type}}">{{$rooms->room_type}}</option>
-                        @endforeach
-                    </select>
-                    @error('room_type')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
+                    <input class="form-control" type="text" name="room_type" placeholder="Room Type 1-100" min="1" max="100" value="{{ $room->room_type }}">
+                @error('room_type')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 </div>
                 <div class="form-group mt-2">
                     <label for="occupancy_limit">Occupancy Limit</label>
-                    <input class="form-control" type="number" min="1" max="12" name="occupancy_limit" placeholder="1 to 12 only" value="{{$rooms->occupancy_limit}}">
+                    <input class="form-control" type="number" min="1" max="12" name="occupancy_limit" placeholder="1 to 12 max" value="{{$room->occupancy_limit}}">
                     @error('occupancy_limit')
                         <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="form-group mt-2">
                     <label for="price">Price</label>
-                    <input class="form-control" type="number" pattern="[0-9]" min="1" max="100000" name="price" value="{{$rooms->price}}">
+                    <input class="form-control" type="number" pattern="[0-9]" min="1000" max="100000" name="price" value="{{$room->price}}">
                     @error('price')
                         <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="form-group mt-2">
                     <label for="is_available">Availability</label>
-                    <select name="is_available" id="is_available" class="form-select">
-                        @foreach ($room as $rooms)
-                            <option selected value="{{$rooms->is_available}}">{{$rooms->is_available}}</option>
-                            @endforeach
-                    </select>
+                    <input class="form-control" type="text" name="is_available" value="{{$room->is_availabile}}">
                     @error('is_available')
                         <p class="text-danger">{{$message}}</p>
                     @enderror

@@ -9,7 +9,7 @@
                 @csrf 
                 <div class="form-group mt-2">
                     <label for="room_no">Room Number</label>
-                    <input class="form-control" type="number" min="1" max="100" name="room_no" placeholder="Room number 1-100">
+                    <input class="form-control" type="number" name="room_no" max="1000" placeholder="Room number to 1000">
                     @error('room_no')
                         <p class="text-danger">{{$message}}</p>
                     @enderror

@@ -29,33 +29,63 @@
     <div class="col-md-5">
         <form action="{{url('booking/' .$booking->id)}}" method="POST">
             @csrf
-            <div class="form-group mt-2">
-                <label for="full_name">Full Name</label>
-                <input type="text" name="full_name" class="form-control" value="{{$booking->full_name}}">
-                @error('full_name')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="form-group mt-2">
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" value="{{$booking->username}}">
-                @error('username')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="form-group mt-2">
-                <label for="email">Email</label>
-                <input type="text" name="email" class="form-control" value="{{$booking->email}}">
-                @error('email')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-            </div>
+                <div class="form-group mt-2">
+                    <label for="guest_id">Select guest</label>
+                    <select name="guest_id" id="guest_id" class="form-select">
+                        <option selected disabled hidden="true">Select guest</option>
+                        @foreach ($guest as $guestId => $guests)
+                            <option value="{{$guests->id}}">{{$guests->full_name}}</option>
+                        @endforeach
+                    </select>
+                    @error('guest_id')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="form-group mt-2">
+                    <label for="room_id">Select room number</label>
+                    <select name="room_id" id="room_id" class="form-select">
+                        <option selected disabled hidden="true">Select room number</option>
+                        @foreach ($room as $rooms)
+                            <option value="{{$rooms->id}}">{{$rooms->id}}</option>
+                        @endforeach
+                    </select>
+                    </select>
+                    @error('room_id')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="form-group mt-2">
+                    <label for="check_in">Select check-in date</label>
+                    <input type="date" name="check_in" class="form-control" placeholder="Enter your check-in date">
+                    @error('check_in')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="form-group mt-2">
+                    <label for="check_out">Select check-out date</label>
+                    <input type="date" name="check_out" class="form-control" placeholder="Enter your check-out date">
+                    @error('check_out')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="form-group mt-2">
+                    <label for="total_amount">Total Amount</label>
+                    <input type="number" name="total_amount" min='1000' max="90000" class="form-control" value="1000" placeholder="Enter the total amount here.">
+                    @error('total_amount')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="form-group mt-2">
+                    <label for="payment_status">Payment Status</label>
+                    <input type="text" name="payment_status" class="form-control" placeholder="Pending or paid">
+                    @error('payment_status')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
 
             <div class="form-group my-3 d-grid gap 2 d-md-flex justify-content-end">
-                <button type="button" class="btn btn-danger me-md-2 mt-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete User</button>
-                <button class="btn btn-primary me-md-2 mt-2" type="submit">Edit User</button>
+                <button class="btn btn-primary me-md-2 mt-2" type="submit">Update Booking</button>
+                <button type="button" class="btn btn-danger me-md-2 mt-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete Booking</button>
             </div>
         </form>
     </div>

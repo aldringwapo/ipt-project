@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Guest;
 use App\Models\Room;
+
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -18,11 +20,11 @@ class BookingController extends Controller
 
 
     public function create() {
-        $booking = Booking::orderBy('id')->get();
+        // $booking = Booking::orderBy('id')->get();
         $room = Room::orderBy('id')->get();
         $guest = Guest::orderBy('id')->get();
 
-        return view('booking.create', ['booking' => $booking, 'room' => $room, 'guest' => $guest]);
+        return view('booking.create', ['room' => $room, 'guest' => $guest]);
 
     //     $customers = Customer::orderBy('id')->get();
     // $vehicles = Vehicle::select('id')->distinct()->orderBy('id')->get();
@@ -37,7 +39,7 @@ class BookingController extends Controller
             'room_id' => 'required|numeric',
             'check_in' => 'required|date',
             'check_out' => 'required|date',
-            'total_amount' => 'required|decimal',
+            'total_amount' => 'required|numeric',
             'payment_status' => 'required|string',
         ]);
 
@@ -56,7 +58,13 @@ class BookingController extends Controller
 
     public function edit(Booking $booking) {
 
-        return view('booking.edit',compact('booking'));
+    $booking = $booking->load('guest');
+    $booking = $booking->load('room');
+
+    $guest = Guest::all();
+    $room = Room::all();
+
+        return view('booking.edit',compact('booking','guest','room'));
     }
 
     public function update(Booking $booking, Request $request) {
